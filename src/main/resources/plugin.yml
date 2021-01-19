@@ -1,0 +1,9 @@
+name: ExecuteEverywhere
+authors: [vemacs, A248]
+main: space.arim.executeeverywhere.bukkit.ExecuteEverywhereBukkit
+version: ${project.version}
+
+commands:
+  eebukkit:
+    usage: /eebukkit <command>
+    description: Send a command from the backend to the proxy

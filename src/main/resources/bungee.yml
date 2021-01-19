@@ -1,0 +1,4 @@
+name: ExecuteEverywhere
+authors: [vemacs, A248]
+main: space.arim.executeeverywhere.bukkit.ExecuteEverywhereBungee
+version: ${project.version}

@@ -36,7 +36,7 @@ public class ExecuteEverywhere implements AutoCloseable {
 				new Thread(new SubscriptionRunnable(jedisPool, subscriber), "executeeverywhere-subscriber"));
 	}
 
-	private static Config loadConfig(Path folder, String filename) {
+	static Config loadConfig(Path folder, String filename) {
 		try {
 			return new ConfigurationHelper<>(folder, filename,
 					new SnakeYamlConfigurationFactory<>(Config.class, ConfigurationOptions.defaults())).reloadConfigData();

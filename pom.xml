@@ -53,15 +53,15 @@
 					<relocations>
 						<relocation>
 							<pattern>redis.clients</pattern>
-							<shadedPattern>me.vemacs.executeeverywhere.shaded.jedis</shadedPattern>
+							<shadedPattern>space.arim.executeeverywhere.shaded.jedis</shadedPattern>
 						</relocation>
 						<relocation>
 							<pattern>org.apache</pattern>
-							<shadedPattern>me.vemacs.executeeverywhere.shaded.apache</shadedPattern>
+							<shadedPattern>space.arim.executeeverywhere.shaded.apache</shadedPattern>
 						</relocation>
 						<relocation>
 							<pattern>space.arim.dazzleconf</pattern>
-							<shadedPattern>me.vemacs.executeeverywhere.shaded.dazzleconf</shadedPattern>
+							<shadedPattern>space.arim.executeeverywhere.shaded.dazzleconf</shadedPattern>
 						</relocation>
 					</relocations>
 				</configuration>

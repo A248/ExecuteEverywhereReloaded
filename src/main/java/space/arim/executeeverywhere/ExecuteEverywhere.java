@@ -2,7 +2,13 @@ package space.arim.executeeverywhere;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import space.arim.dazzleconf.ConfigurationOptions;
+import space.arim.dazzleconf.error.InvalidConfigException;
+import space.arim.dazzleconf.ext.snakeyaml.SnakeYamlConfigurationFactory;
+import space.arim.dazzleconf.helper.ConfigurationHelper;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Path;
 
 public class ExecuteEverywhere implements AutoCloseable {
@@ -20,7 +26,7 @@ public class ExecuteEverywhere implements AutoCloseable {
 	}
 
 	public static ExecuteEverywhere setup(Path folder, boolean isProxy, CommandRunner commandRunner) {
-		Config config = Config.load(folder, "config.yml");
+		Config config = loadConfig(folder, "config.yml");
 		Config.ConnectionSettings connectionSettings = config.connectionSettings();
 		JedisPool jedisPool = new JedisPool(new JedisPoolConfig(),
 				connectionSettings.host(), connectionSettings.port(), 0, connectionSettings.password());
@@ -28,6 +34,17 @@ public class ExecuteEverywhere implements AutoCloseable {
 
 		return new ExecuteEverywhere(config, subscriber, jedisPool,
 				new Thread(new SubscriptionRunnable(jedisPool, subscriber), "executeeverywhere-subscriber"));
+	}
+
+	private static Config loadConfig(Path folder, String filename) {
+		try {
+			return new ConfigurationHelper<>(folder, filename,
+					new SnakeYamlConfigurationFactory<>(Config.class, ConfigurationOptions.defaults())).reloadConfigData();
+		} catch (IOException ex) {
+			throw new UncheckedIOException(ex);
+		} catch (InvalidConfigException ex) {
+			throw new RuntimeException("Please fix your configuration and restart.", ex);
+		}
 	}
 
 	public Config config() {

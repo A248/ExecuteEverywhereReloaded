@@ -1,4 +1,4 @@
 name: ExecuteEverywhere
 authors: [vemacs, A248]
-main: space.arim.executeeverywhere.bukkit.ExecuteEverywhereBungee
+main: space.arim.executeeverywhere.bungee.ExecuteEverywhereBungee
 version: ${project.version}

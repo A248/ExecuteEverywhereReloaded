@@ -1,9 +1,11 @@
 
 # ExecuteEverywhereReloaded
 
-Recoded version of ExecuteEverywhere
+Recoded version of ExecuteEverywhere.
 
 ## Config
+
+Please note that a Redis server is required to make the plugin function.
 
 The configuration is self-explanatory. Restart the server after changing the configuration to have it take effect.
 The configuration is platform-independent so you can copy it once across each server and proxy in your network.

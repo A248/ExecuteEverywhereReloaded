@@ -33,7 +33,7 @@ public class ExecuteEverywhereVelocity {
 
 	@Subscribe
 	public void onInitialize(ProxyInitializeEvent event) {
-		instance = ExecuteEverywhere.setup(dataFolder, true, (command) -> {
+		instance = ExecuteEverywhere.setupAndStart(dataFolder, true, (command) -> {
 			server.getCommandManager().executeImmediatelyAsync(server.getConsoleCommandSource(), command).exceptionally((ex) -> {
 				logger.error("Encountered exception while dispatching command", ex);
 				return null;

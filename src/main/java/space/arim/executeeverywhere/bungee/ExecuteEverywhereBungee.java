@@ -12,7 +12,7 @@ public class ExecuteEverywhereBungee extends Plugin {
 
 	@Override
 	public void onEnable() {
-		instance = ExecuteEverywhere.setup(getDataFolder().toPath(), true, (command) -> {
+		instance = ExecuteEverywhere.setupAndStart(getDataFolder().toPath(), true, (command) -> {
 			getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), command);
 		});
 		getProxy().getPluginManager().registerCommand(this, new Command("eebungee") {

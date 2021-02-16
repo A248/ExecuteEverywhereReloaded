@@ -25,7 +25,13 @@ public class ExecuteEverywhere implements AutoCloseable {
 		this.subscribeThread = subscribeThread;
 	}
 
-	public static ExecuteEverywhere setup(Path folder, boolean isProxy, CommandRunner commandRunner) {
+	public static ExecuteEverywhere setupAndStart(Path folder, boolean isProxy, CommandRunner commandRunner) {
+		ExecuteEverywhere instance = setup(folder, isProxy, commandRunner);
+		instance.start();
+		return instance;
+	}
+
+	private static ExecuteEverywhere setup(Path folder, boolean isProxy, CommandRunner commandRunner) {
 		Config config = loadConfig(folder, "config.yml");
 		Config.ConnectionSettings connectionSettings = config.connectionSettings();
 		JedisPool jedisPool = new JedisPool(new JedisPoolConfig(),
@@ -51,7 +57,7 @@ public class ExecuteEverywhere implements AutoCloseable {
 		return config;
 	}
 
-	public void start() {
+	private void start() {
 		subscribeThread.start();
 	}
 

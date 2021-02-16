@@ -9,7 +9,7 @@ public class ExecuteEverywhereBukkit extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		instance = ExecuteEverywhere.setup(getDataFolder().toPath(), false, (command) -> {
+		instance = ExecuteEverywhere.setupAndStart(getDataFolder().toPath(), false, (command) -> {
 			getServer().getScheduler().runTask(this, () -> {
 				getServer().dispatchCommand(getServer().getConsoleSender(), command);
 			});

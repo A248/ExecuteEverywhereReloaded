@@ -40,7 +40,7 @@ public class ExecuteEverywhereSponge {
 
 	@Listener
 	public void onInitialize(GameInitializationEvent event) {
-		instance = ExecuteEverywhere.setup(dataFolder, false, (command) -> {
+		instance = ExecuteEverywhere.setupAndStart(dataFolder, false, (command) -> {
 			server.getScheduler().createSyncExecutor(ExecuteEverywhereSponge.this).execute(() -> {
 				server.getCommandManager().process(server.getServer().getConsole(), command);
 			});

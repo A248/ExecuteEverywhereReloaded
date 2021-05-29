@@ -22,12 +22,16 @@ public class ExecuteEverywhereBungee extends Plugin {
 					getProxy().getScheduler().runAsync(ExecuteEverywhereBungee.this, () -> {
 						instance.dispatchBackendBoundCommand(String.join(" ", args));
 					});
-					sender.sendMessage(TextComponent.fromLegacyText(instance.config().successful()));
+					sendMessage(sender, instance.config().successful());
 				} else {
-					sender.sendMessage(TextComponent.fromLegacyText(instance.config().noPermission()));
+					sendMessage(sender, instance.config().noPermission());
 				}
 			}
 		});
+	}
+
+	private void sendMessage(CommandSender sender, String message) {
+		sender.sendMessage(TextComponent.fromLegacyText(message));
 	}
 
 	@Override

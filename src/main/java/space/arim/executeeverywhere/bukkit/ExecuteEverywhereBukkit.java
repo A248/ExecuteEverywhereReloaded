@@ -1,5 +1,7 @@
 package space.arim.executeeverywhere.bukkit;
 
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import space.arim.executeeverywhere.ExecuteEverywhere;
 
@@ -19,12 +21,16 @@ public class ExecuteEverywhereBukkit extends JavaPlugin {
 				getServer().getScheduler().runTaskAsynchronously(this, () -> {
 					instance.dispatchProxyBoundCommand(String.join(" ", args));
 				});
-				sender.sendMessage(instance.config().successful());
+				sendMessage(sender, instance.config().successful());
 			} else {
-				sender.sendMessage(instance.config().noPermission());
+				sendMessage(sender, instance.config().noPermission());
 			}
 			return true;
 		});
+	}
+
+	private void sendMessage(CommandSender sender, String message) {
+		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
 	}
 
 	@Override

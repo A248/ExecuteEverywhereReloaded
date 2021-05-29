@@ -48,12 +48,16 @@ public class ExecuteEverywhereVelocity {
 					server.getScheduler().buildTask(ExecuteEverywhereVelocity.this, () -> {
 						instance.dispatchBackendBoundCommand(invocation.arguments());
 					}).schedule();
-					sender.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(instance.config().successful()));
+					sendMessage(sender, instance.config().successful());
 				} else {
-					sender.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(instance.config().noPermission()));
+					sendMessage(sender, instance.config().noPermission());
 				}
 			}
 		});
+	}
+
+	private void sendMessage(CommandSource sender, String message) {
+		sender.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(message));
 	}
 
 	@Subscribe

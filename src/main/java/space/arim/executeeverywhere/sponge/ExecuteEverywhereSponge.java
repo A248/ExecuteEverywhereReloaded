@@ -11,6 +11,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 import space.arim.executeeverywhere.ExecuteEverywhere;
@@ -52,9 +53,9 @@ public class ExecuteEverywhereSponge {
 					server.getScheduler().createAsyncExecutor(ExecuteEverywhereSponge.this).execute(() -> {
 						instance.dispatchProxyBoundCommand(arguments);
 					});
-					sender.sendMessage(Text.of(instance.config().successful()));
+					sendMessage(sender, instance.config().successful());
 				} else {
-					sender.sendMessage(Text.of(instance.config().noPermission()));
+					sendMessage(sender, instance.config().noPermission());
 				}
 				return CommandResult.success();
 			}
@@ -84,5 +85,9 @@ public class ExecuteEverywhereSponge {
 				return Text.of();
 			}
 		}, "eesponge");
+	}
+
+	private void sendMessage(CommandSource sender, String message) {
+		sender.sendMessage(TextSerializers.FORMATTING_CODE.deserialize(message));
 	}
 }

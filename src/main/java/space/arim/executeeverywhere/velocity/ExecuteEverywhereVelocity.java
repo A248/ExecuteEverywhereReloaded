@@ -15,7 +15,7 @@ import space.arim.executeeverywhere.ExecuteEverywhere;
 import javax.inject.Inject;
 import java.nio.file.Path;
 
-@Plugin(id = "executeeverywhere", name = "ExecuteEverywhere", version = "0.1.0", authors = "A248")
+@Plugin(id = "executeeverywhere", name = "ExecuteEverywhere", version = "0.2.0", authors = "A248")
 public class ExecuteEverywhereVelocity {
 
 	private final ProxyServer server;

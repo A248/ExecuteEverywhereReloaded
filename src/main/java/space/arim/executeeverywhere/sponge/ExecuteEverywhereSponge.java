@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Plugin(id = "executeeverywhere", name = "ExecuteEverywhere", version = "0.1.0", authors = "A248")
+@Plugin(id = "executeeverywhere", name = "ExecuteEverywhere", version = "0.2.0", authors = "A248")
 public class ExecuteEverywhereSponge {
 
 	private final Game server;

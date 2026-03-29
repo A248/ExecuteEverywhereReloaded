@@ -34,8 +34,10 @@ public class ExecuteEverywhere implements AutoCloseable {
 	private static ExecuteEverywhere setup(Path folder, boolean isProxy, CommandRunner commandRunner) {
 		Config config = loadConfig(folder, "config.yml");
 		Config.ConnectionSettings connectionSettings = config.connectionSettings();
+		String password = config.connectionSettings().password();
+		if(password.isEmpty()) password = null;
 		JedisPool jedisPool = new JedisPool(new JedisPoolConfig(),
-				connectionSettings.host(), connectionSettings.port(), 0, connectionSettings.password());
+		connectionSettings.host(), connectionSettings.port(), 0, password);
 		Subscriber subscriber = new Subscriber(isProxy, commandRunner);
 
 		return new ExecuteEverywhere(config, subscriber, jedisPool,
